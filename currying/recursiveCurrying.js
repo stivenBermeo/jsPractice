@@ -6,6 +6,7 @@ const spacing = function(){
 }
 
 class Currying {
+
   params = [];
   fn = null;
   constructor(fn){
@@ -14,9 +15,12 @@ class Currying {
 
   curry(val){
     this.params.push(val);
+    return (newArg)=>{
+      return this.curry(newArg)
+    };
   }
 
-  exec(){
+  exec(_Currying){
     this.fn.apply(null, this.params);
   }
 
@@ -24,12 +28,11 @@ class Currying {
 
 const _Currying = new Currying(spacing);
 
-_Currying.curry('this');
-_Currying.curry('is');
+const x = _Currying.curry('this')('is');
 _Currying.curry('text');
-_Currying.exec();
+_Currying.exec(_Currying);
 
-_Currying.curry('it also is');
+_Currying.curry('it also is')('-kinda-')('-fun tho\'-' );
 _Currying.curry('crappy code for practice');
-_Currying.exec();
+_Currying.exec(_Currying);
 
