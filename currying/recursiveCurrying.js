@@ -26,13 +26,13 @@ class Currying {
 
 }
 
-const _Currying = new Currying(spacing);
+const spaceCurrying = new Currying(spacing);
 
-const x = _Currying.curry('this')('is');
-_Currying.curry('text');
-_Currying.exec();
+const x = spaceCurrying.curry('this')('is');
+spaceCurrying.curry('text');
+spaceCurrying.exec();
 
-_Currying.curry('it also is')('-kinda-')('-fun tho\'-' );
-_Currying.curry('crappy code for practice');
-_Currying.exec();
+spaceCurrying.curry('it also is')('-kinda-')('-fun tho\'-' );
+spaceCurrying.curry('crappy code for practice');
+spaceCurrying.exec();
 
