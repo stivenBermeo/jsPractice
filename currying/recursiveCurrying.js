@@ -20,7 +20,7 @@ class Currying {
     };
   }
 
-  exec(_Currying){
+  exec(){
     this.fn.apply(null, this.params);
   }
 
@@ -30,9 +30,9 @@ const _Currying = new Currying(spacing);
 
 const x = _Currying.curry('this')('is');
 _Currying.curry('text');
-_Currying.exec(_Currying);
+_Currying.exec();
 
 _Currying.curry('it also is')('-kinda-')('-fun tho\'-' );
 _Currying.curry('crappy code for practice');
-_Currying.exec(_Currying);
+_Currying.exec();
 
