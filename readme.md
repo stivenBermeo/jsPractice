@@ -1,0 +1,3 @@
+## Currying
+- [currying.js](https://github.com/Stiven-Bermeo/jsPractice/blob/dev/currying/currying.js) Is a branching example, it elaborates a very simple use case based on the "Currying example" [presented here](https://javascript.info/currying-partials)
+- [recursiveCurrying.js](https://github.com/Stiven-Bermeo/jsPractice/blob/dev/currying/recursiveCurrying.js) is my take on recursive currying, messy but unlike the standard one, this one doesn't required the specification of the core function's parameters (func.length [found here as well](https://javascript.info/currying-partials))
