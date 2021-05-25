@@ -7,7 +7,7 @@ const spacing = function(){
 const recCurrying = function(fn, _params = []){
   return (newArg, exec = false )=>{ 
     let params = [..._params,newArg];
-    if(exec) fn.apply(null, [...params]);
+    if(exec) fn.apply(null, params);
     return recCurrying(fn, params);
   }
 }
