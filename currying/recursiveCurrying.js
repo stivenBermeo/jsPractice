@@ -1,27 +1,28 @@
 //? use lodash, this already exists try to mutate only if necessary(couldn't bother to look for the function in it's github page)
 
-
 const spacing = function(){
-  const args  = [...Object.values(arguments)];
-  const limit = args.splice(-1);
-
-  if(args.length >= limit){
-    console.log(args.join(' '));
-  }
-  
+  console.log(Object.values(arguments).join(' '));  
 }
 
-const recCurrying = function(fn, _params = [], num){
-  return (newArg, _alterNumAtAnyPoint = false)=>{ 
-    let params = [..._params,newArg]   
-    fn.apply(null, [...params, _alterNumAtAnyPoint? _alterNumAtAnyPoint :  num]);
-    return recCurrying(fn,params,num);
+const recCurrying = function(fn, _params = []){
+  return (newArg, exec = false )=>{ 
+    let params = [..._params,newArg];
+    if(exec) fn.apply(null, [...params]);
+    return recCurrying(fn, params);
   }
 }
 
-let spacingCurryingVI = recCurrying(spacing,[],6);
-const potentialCurryingMeme = spacingCurryingVI = spacingCurryingVI('this')('is') ;
-spacingCurryingVI = spacingCurryingVI('some');
-spacingCurryingVI = spacingCurryingVI('lame')('text');
-spacingCurryingVI = spacingCurryingVI('/dot for testing purposes/ .');
-potentialCurryingMeme('Sparta !',3);
+
+console.log('\nCase A');
+let spacingCurryingA = recCurrying(spacing);
+spacingCurryingA('esto')('es')('currying')('puro')('y')('duro :)',true)('y')('lo')('mejor')('es')('que')('es')('dinámico',true);
+
+console.log('\nCase B');
+let spacingCurryingB = recCurrying(spacing);
+spacingCurryingB = spacingCurryingB('esto')('es')('currying')('puro')('y')('duro :)',true);
+spacingCurryingB('y')('lo')('mejor')('es')('que')('es')('dinámico',true);
+
+console.log('\nCase C');
+let spacingCurryingC = recCurrying(spacing);
+spacingCurryingC('esto')('es')('currying')('puro')('y')('duro :)',true);
+spacingCurryingC('esto')('es')('currying')('puro')('y')('duro :)')('y')('lo')('mejor')('es')('que')('es')('dinámico',true);
