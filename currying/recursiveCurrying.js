@@ -1,38 +1,28 @@
 //? use lodash, this already exists try to mutate only if necessary(couldn't bother to look for the function in it's github page)
 
-
 const spacing = function(){
-  console.log(Object.values(arguments).join(' '));
+  console.log(Object.values(arguments).join(' '));  
 }
 
-class Currying {
-
-  params = [];
-  fn = null;
-  constructor(fn){
-    this.fn = fn;
+const recCurrying = function(fn, _params = []){
+  return (newArg, exec = false )=>{ 
+    let params = [..._params,newArg];
+    if(exec) fn.apply(null, params);
+    return recCurrying(fn, params);
   }
-
-  curry(val){
-    this.params.push(val);
-    return (newArg)=>{
-      return this.curry(newArg)
-    };
-  }
-
-  exec(){
-    this.fn.apply(null, this.params);
-  }
-
 }
 
-const spaceCurrying = new Currying(spacing);
 
-const x = spaceCurrying.curry('this')('is');
-spaceCurrying.curry('text');
-spaceCurrying.exec();
+console.log('\nCase A');
+let spacingCurryingA = recCurrying(spacing);
+spacingCurryingA('esto')('es')('currying')('puro')('y')('duro :)',true)('y')('lo')('mejor')('es')('que')('es')('dinámico',true);
 
-spaceCurrying.curry('it also is')('-kinda-')('-fun tho\'-' );
-spaceCurrying.curry('crappy code for practice');
-spaceCurrying.exec();
+console.log('\nCase B');
+let spacingCurryingB = recCurrying(spacing);
+spacingCurryingB = spacingCurryingB('esto')('es')('currying')('puro')('y')('duro :)',true);
+spacingCurryingB('y')('lo')('mejor')('es')('que')('es')('dinámico',true);
 
+console.log('\nCase C');
+let spacingCurryingC = recCurrying(spacing);
+spacingCurryingC('esto')('es')('currying')('puro')('y')('duro :)',true);
+spacingCurryingC('esto')('es')('currying')('puro')('y')('duro :)')('y')('lo')('mejor')('es')('que')('es')('dinámico',true);
